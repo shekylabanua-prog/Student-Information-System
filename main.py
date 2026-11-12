@@ -44,3 +44,24 @@ def table(headers, rows):
     for r in rows:
         print(fmt(r))
     print(paint(line))
+    def hash_pw(pw, salt):
+    return hashlib.sha256((salt + pw).encode()).hexdigest()
+
+def ensure_admin():
+    if not load(USERS):
+        salt = secrets.token_hex(8)
+        append(USERS, ["admin", salt, hash_pw("admin123", salt), "Administrator"])
+        salt = secrets.token_hex(8)
+        append(USERS, ["staff", salt, hash_pw("staff123", salt), "Staff"])
+
+def login():
+    for _ in range(3):
+        header("STUDENT INFORMATION SYSTEM")
+        u = input("Username: ").strip()
+        p = input("Password: ").strip()
+        for name, salt, h, role in load(USERS):
+            if name == u and h == hash_pw(p, salt):
+                return name, role
+        print("Wrong username or password.")
+        pause()
+    return None
