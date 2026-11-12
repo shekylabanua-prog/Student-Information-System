@@ -44,6 +44,7 @@ def table(headers, rows):
     for r in rows:
         print(fmt(r))
     print(paint(line))
+
     def hash_pw(pw, salt):
     return hashlib.sha256((salt + pw).encode()).hexdigest()
 
@@ -62,6 +63,6 @@ def login():
         for name, salt, h, role in load(USERS):
             if name == u and h == hash_pw(p, salt):
                 return name, role
-        print("Wrong username or password.")
+        print("Wrong username or Password.")
         pause()
     return None
