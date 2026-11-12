@@ -24,3 +24,23 @@ def save(path, rows):
 def append(path, row):
     with open(path, "a") as f:
         f.write("|".join(row) + "\n")
+
+def paint(t):
+    return color + t + RESET
+def header(title):
+    os.system("cls" if os.name == "nt" else "clear")
+    print(paint("=" * 50))
+    print(paint(title.center(50)))
+    print(paint("=" * 50))
+
+def pause():
+    input("\nPress Enter to continue...")
+
+def table(headers, rows):
+    widths = [max(len(str(x)) for x in col) for col in zip(headers, *rows)]
+    line = "+" + "+".join("-" * (w + 2) for w in widths) + "+"
+    fmt = lambda r: "| " + " | ".join(str(x).ljust(w) for x, w in zip(r, widths)) + " |"
+    print(paint(line)); print(fmt(headers)); print(paint(line))
+    for r in rows:
+        print(fmt(r))
+    print(paint(line))
