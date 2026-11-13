@@ -46,15 +46,15 @@ def table(headers, rows):
     print(paint(line))
 
     def hash_pw(pw, salt):
-    return hashlib.sha256((salt + pw).encode()).hexdigest()
-
-def ensure_admin():
-    if not load(USERS):
-        salt = secrets.token_hex(8)
-        append(USERS, ["admin", salt, hash_pw("admin123", salt), "Administrator"])
-        salt = secrets.token_hex(8)
-        append(USERS, ["staff", salt, hash_pw("staff123", salt), "Staff"])
-
+       return hashlib.sha256((salt + pw).encode()).hexdigest()
+   
+   def ensure_admin():
+       if not load(USERS):
+           salt = secrets.token_hex(8)
+           append(USERS, ["admin", salt, hash_pw("admin123", salt), "Administrator"])
+           salt = secrets.token_hex(8)
+           append(USERS, ["staff", salt, hash_pw("staff123", salt), "Staff"])
+   
 def login():
     for _ in range(3):
         header("STUDENT INFORMATION SYSTEM")
@@ -66,7 +66,8 @@ def login():
         print("Wrong username or Password.")
         pause()
     return None
-    def add_student():
+
+ def add_student():
     header("ADD STUDENT")
     sid = input("Student ID: ").strip()
     if not sid or any(s[0] == sid for s in load(STUDENTS)):
@@ -84,7 +85,7 @@ def login():
 
 def view_students():
     header("ALL STUDENTS")
-    table(["ID", "Name", "Course", "Year"], load ("Students"))
+    table(["ID", "Name", "Course", "Year"], load(STUDENTS))
     pause()
 
 def search_student():
