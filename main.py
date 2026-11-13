@@ -66,3 +66,30 @@ def login():
         print("Wrong username or Password.")
         pause()
     return None
+    def add_student():
+    header("ADD STUDENT")
+    sid = input("Student ID: ").strip()
+    if not sid or any(s[0] == sid for s in load(STUDENTS)):
+        print("ID is empty or already exists.")
+        return pause()
+    name = input("Full name: ").strip()
+    course = input("Course: ").strip()
+    year = input("Year level: ").strip()
+    if not year.isdigit():
+        print("Year level must be a number.")
+        return pause()
+    append(STUDENTS, [sid, name, course, year])
+    print("Student saved!")
+    pause()
+
+def view_students():
+    header("ALL STUDENTS")
+    table(["ID", "Name", "Course", "Year"], load ("Students"))
+    pause()
+
+def search_student():
+    header("SEARCH STUDENT")
+    key = input("Enter ID or name: ").strip().lower()
+    found = [s for s in load(STUDENTS) if key in s[0].lower() or key in s[1].lower()]
+    table(["ID", "Name", "Course", "Year"], found)
+    pause()
