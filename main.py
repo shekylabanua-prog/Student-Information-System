@@ -115,4 +115,24 @@ def view_subjects():
     header("ALL SUBJECTS")
     table(["Code", "Title", "Units"], load(SUBJECTS))
     pause()
+
+def add_subject():
+    header("ADD SUBJECT")
+    code = input("Subject code:").strip().upper()
+    if not code or any(s[0] == code for s in load(SUBJECTS)):
+        print("Code is empty or already exists.")
+        return pause()
+    title = input("Subject title: ").strip()
+    units = input("Units: ").strip()
+    if not units.isdigit():
+        print("Units must be a number.")
+        return pause()
+    append(SUBJECTS, [code, title, units])
+    print("Subject saved!")
+    pause()
+
+def view_subjects():
+    header("ALL SUBJECTS")
+    table(["Code", "Title", "Units"], load(SUBJECTS))
+    pause()
         
