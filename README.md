@@ -34,3 +34,13 @@ A terminal-based Student Information System built with Python 3 and text file (.
 ## Author
 Banua, Shekyla S.
 BSCS 2nd Year-A
+
+## Acknowledgement 
+Dela Crus, Wella Mae 
+BSCS 2nd Year-A
+
+## Screenshots
+![Login](screenshots/login.png)
+![Dashboard](screenshots/dashboard.png)
+![Reports](screenshots/reports.png)
+![Themes](screenshots/themes.png)

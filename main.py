@@ -45,10 +45,10 @@ def table(headers, rows):
         print(fmt(r))
     print(paint(line))
 
-    def hash_pw(pw, salt):
+def hash_pw(pw, salt):
        return hashlib.sha256((salt + pw).encode()).hexdigest()
    
-   def ensure_admin():
+def ensure_admin():
        if not load(USERS):
            salt = secrets.token_hex(8)
            append(USERS, ["admin", salt, hash_pw("admin123", salt), "Administrator"])
@@ -67,7 +67,7 @@ def login():
         pause()
     return None
 
- def add_student():
+def add_student():
     header("ADD STUDENT")
     sid = input("Student ID: ").strip()
     if not sid or any(s[0] == sid for s in load(STUDENTS)):
@@ -94,20 +94,22 @@ def search_student():
     found = [s for s in load(STUDENTS) if key in s[0].lower() or key in s[1].lower()]
     table(["ID", "Name", "Course", "Year"], found)
     pause()
-    def add_subject():
+    
+def add_subject():
         header("ADD SUBJECT")
         code = input("Subject code: ").strip().upper()
         if not code or any(s[0] == code for s in load(SUBJECTS)):
              print("Code is empty or already exists.")
              return pause()
         title = input("Subject title: ").strip()
-    units = input("Units: ").strip()
-    if not units.isdigit():
-        print("Units must be a number.")
-        return pause()
-    append(SUBJECTS, [code, title, units])
-    print("Subject saved!")
-    pause()
+        
+        units = input("Units: ").strip()
+        if not units.isdigit():
+             print("Units must be a number.")
+             return pause()
+        append(SUBJECTS, [code, title, units])
+        print("Subject saved!")
+        pause()
 
 def view_subjects():
     header("ALL SUBJECTS")
