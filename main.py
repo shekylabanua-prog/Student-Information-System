@@ -157,5 +157,37 @@ def add_grade():
     print("Grade saved!")
     pause()
 
-    
+def report_card():
+    header("STUDENT REPORT CARD")
+    sid = input("Student ID: ").strip()
+    student = next((s for s in load(STUDENTS) if s[0] == sid), None)
+    if not student:
+        print("Student not found.")
+        return pause()
+    titles = {s[0]: s[1] for s in load(SUBJECTS)}
+    rows = [[g[1], titles.get(g[1], "?"), g[2]] for g in load(GRADES) if g[0] == sid]
+    print(paint(f"\n{student[1]} - {student[2]}"))
+    table(["Code", "Subject", "Grade"], rows)
+    if rows:
+        avg = sum(float(r[2]) for r in rows) / len(rows)
+        print(f"Average: {avg:.2f}")
+    pause()
+
+def class_summary():
+    header("CLASS SUMMARY")
+    rows = []
+    for sid, name, *_ in load(STUDENTS):
+        gs = [float(g[2]) for g in load(GRADES) if g[0] == sid]
+        if gs:
+            avg = sum(gs) / len(gs)
+            rows.append([sid, name, f"{avg:.2f}", "Passed" if avg >= 75 else "Failed"])
+    table(["ID", "Name", "Average", "Status"], rows)
+    if rows:
+        top = max(rows, key=lambda r: float(r[2]))
+        print(f"Total students graded: {len(rows)}")
+        print(f"Passed: {sum(r[3] == 'Passed' for r in rows)}")
+        print(f"Top student: {top[1]} ({top[2]})")
+    pause()
+
+
         
