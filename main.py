@@ -213,6 +213,45 @@ def change_password(user):
     print("Password updated!")
     pause()
 
+def main():
+    ensure_admin()
+    for f in (STUDENTS, SUBJECTS, GRADES):
+        load(f)
+    user = login()
+    if not user:
+        return
+    name, role = user
+    while True:
+        header("MAIN DASHBOARD")
+        from datetime import datetime
+        print(f"User: {name} ({role})   {datetime.now():%Y-%m-%d %H:%M}\n")
+        print("[1] Add Student      [2] View Students")
+        print("[3] Search Student   [4] Add Subject (Admin)")
+        print("[5] View Subjects    [6] Add Grade")
+        print("[7] Report Card      [8] Class Summary")
+        print("[9] Change Theme     [10] Change Password")
+        print("[0] Logout")
+        c = input("\nChoose: ").strip()
+        if c == "1": add_student()
+        elif c == "2": view_students()
+        elif c == "3": search_student()
+        elif c == "4":
+            if role == "Administrator": add_subject()
+            else:
+                print("Admins only."); pause()
+        elif c == "5": view_subjects()
+        elif c == "6": add_grade()
+        elif c == "7": report_card()
+        elif c == "8": class_summary()
+        elif c == "9": change_theme()
+        elif c == "10": change_password(name)
+        elif c == "0": break
+        else:
+            print("Invalid choice."); pause()
+
+if __name__ == "__main__":
+    main()
+
 
 
         
