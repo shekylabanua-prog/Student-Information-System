@@ -43,4 +43,4 @@ BSCS 2nd Year-A
 ![Login](screenshots/login.png)
 ![Dashboard](screenshots/dashboard.png)
 ![Reports](screenshots/reports.png)
-![Themes](screenshots/themes.png)
+![Themes](screenshots/themes.png) 

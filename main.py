@@ -135,4 +135,25 @@ def view_subjects():
     header("ALL SUBJECTS")
     table(["Code", "Title", "Units"], load(SUBJECTS))
     pause()
+
+def add_grade():
+    header("ADD GRADE")
+    sid = input("Student ID:").strip()
+    code = input("Subject Code:").strip().upper()
+    if not any(s[0] == sid for s in load(STUDENTS)):
+        print("Student not found.")
+        return pause()
+    if not any(s[0] == sid for s in load(STUDENTS)):
+        print("Student not found.")
+        return pause()
+    try:
+        g = float(input("Grade(0-100):"))
+        if not 0 <= g <= 100:
+            raise ValueError
+    except ValueError:
+        print("Invalid grade.")
+        return pause()
+    append(GRADES, [sid,code, str(g)])
+    print("Grade saved!")
+    pause()
         
