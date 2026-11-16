@@ -189,5 +189,30 @@ def class_summary():
         print(f"Top student: {top[1]} ({top[2]})")
     pause()
 
+def change_theme():
+    global color
+    header("CHANGE THEME")
+    for k, (n, _) in THEMES.items():
+        print(f"[{k}] {n}")
+    c = input("Choose: ").strip()
+    if c in THEMES:
+        color = THEMES[c][1]
+
+def change_password(user):
+    header("CHANGE PASSWORD")
+    new = input("New password: ").strip()
+    if len(new) < 6:
+        print("At least 6 characters.")
+        return pause()
+    users = load(USERS)
+    for u in users:
+        if u[0] == user:
+            u[1] = secrets.token_hex(8)
+            u[2] = hash_pw(new, u[1])
+    save(USERS, users)
+    print("Password updated!")
+    pause()
+
+
 
         
