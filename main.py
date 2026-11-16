@@ -156,4 +156,6 @@ def add_grade():
     append(GRADES, [sid,code, str(g)])
     print("Grade saved!")
     pause()
+
+    
         
