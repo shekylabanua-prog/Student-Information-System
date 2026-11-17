@@ -117,7 +117,13 @@ def add_subject():
     append(SUBJECTS, [code, title, units])
     print("Subject record saved successfully!")
     pause()
-    
+
+# Shows all saved subjects in a table
+def view_subjects():
+    header("ALL SUBJECTS")
+    table(["Code", "Title", "Units"], load(SUBJECTS))
+    pause()
+
 def add_grade():
     header("ADD GRADE")
     sid = input("Student ID:").strip()
