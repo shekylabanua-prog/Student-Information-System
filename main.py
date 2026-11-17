@@ -80,7 +80,7 @@ def add_student():
         print("Year level must be a number.")
         return pause()
     append(STUDENTS, [sid, name, course, year])
-    print("Student saved!")
+    print("Student saved successfully!")
     pause()
 
 def view_students():
