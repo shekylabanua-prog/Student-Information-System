@@ -1,5 +1,5 @@
 import os, hashlib, secrets
-
+# ----FILE NAMES----
 USERS = "users.txt"
 STUDENTS = "students.txt"
 SUBJECTS = "subjects.txt"
