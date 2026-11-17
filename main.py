@@ -247,7 +247,7 @@ def main():
         elif c == "10": change_password(name)
         elif c == "0": break
         else:
-            print("Invalid choice."); pause()
+            print("Invalid choice. Please try again"); pause()
 
 if __name__ == "__main__":
     main()
