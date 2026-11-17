@@ -95,47 +95,29 @@ def search_student():
     table(["ID", "Name", "Course", "Year"], found)
     pause()
     
-def add_subject():
-        header("ADD SUBJECT")
-        code = input("Subject code: ").strip().upper()
-        if not code or any(s[0] == code for s in load(SUBJECTS)):
-             print("Code is empty or already exists.")
-             return pause()
-        title = input("Subject title: ").strip()
-        
-        units = input("Units: ").strip()
-        if not units.isdigit():
-             print("Units must be a number.")
-             return pause()
-        append(SUBJECTS, [code, title, units])
-        print("Subject saved!")
-        pause()
-
-def view_subjects():
-    header("ALL SUBJECTS")
-    table(["Code", "Title", "Units"], load(SUBJECTS))
-    pause()
-
+# Adds a new subject (Admin only)
+# Checks: code is not empty or duplicate, title is not empty, units is 1 to 6
 def add_subject():
     header("ADD SUBJECT")
-    code = input("Subject code:").strip().upper()
-    if not code or any(s[0] == code for s in load(SUBJECTS)):
-        print("Code is empty or already exists.")
+    code = input("Subject code: ").strip().upper()
+    if not code:
+        print("Subject code cannot be empty.")
+        return pause()
+    if any(s[0] == code for s in load(SUBJECTS)):
+        print("Subject code already exists.")
         return pause()
     title = input("Subject title: ").strip()
-    units = input("Units: ").strip()
-    if not units.isdigit():
-        print("Units must be a number.")
+    if not title:
+        print("Subject title cannot be empty.")
+        return pause()
+    units = input("Units (1-6): ").strip()
+    if not units.isdigit() or not 1 <= int(units) <= 6:
+        print("Units must be a number from 1 to 6.")
         return pause()
     append(SUBJECTS, [code, title, units])
-    print("Subject saved!")
+    print("Subject record saved successfully!")
     pause()
-
-def view_subjects():
-    header("ALL SUBJECTS")
-    table(["Code", "Title", "Units"], load(SUBJECTS))
-    pause()
-
+    
 def add_grade():
     header("ADD GRADE")
     sid = input("Student ID:").strip()
