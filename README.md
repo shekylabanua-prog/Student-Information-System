@@ -40,7 +40,27 @@ Dela Crus, Wella Mae
 BSCS 2nd Year-A
 
 ## Screenshots
+
+### Login
 ![Login](screenshots/login.png)
-![Dashboard](screenshots/dashboard.png)
-![Reports](screenshots/reports.png)
-![Themes](screenshots/themes.png) 
+
+### Main Dashboard
+![Main Dashboard](screenshots/Main%20dashboard.png)
+
+### Add Student
+![Add Student](screenshots/Add%20student.png)
+
+### View Subjects
+![View Subjects](screenshots/View%20subjects.png)
+
+### Add Grade
+![Add Grade](screenshots/Add%20grade.png)
+
+### Student Report Card
+![Student Report Card](screenshots/Student%20report%20card.png)
+
+### Class Summary
+![Class Summary](screenshots/Class%20summary.png)
+
+### Theme Customization
+![Theme](screenshots/Theme.png)
